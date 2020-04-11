@@ -12,12 +12,19 @@ class BankAccountsController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
+    private var bankAccounts = [BankAccount]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        print(Accounts.shared.bankAccounts.first?.balance.description ?? 0)
     }
  
-    
+    private func loadAccounts() {
+        bankAccounts = Accounts.shared.bankAccounts
+    }
 }
