@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+@objc class BankAccount: NSObject {
+    static var shared = BankAccount()
+    @objc dynamic var username: String
+    @objc dynamic var balance: Double
+    override private init() {
+        username = "N/A"
+        balance = 0.0
+    }
+}
+
+@objc class Accounts: NSObject {
+    static var shared = Accounts()
+    @objc dynamic var bankAccounts = [BankAccount]()
+}
