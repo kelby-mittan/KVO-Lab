@@ -27,23 +27,19 @@ class CreateUserController: UIViewController {
             return
         }
         
-        let bankAccount = BankAccount.shared
+        let bankAccount = BankAccount()
         bankAccount.username = nameText
         bankAccount.balance = balanceDouble
         Accounts.shared.bankAccounts.append(bankAccount)
         
-//        guard let accountsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "BankAccountsController") as? BankAccountsController else {
-//            fatalError("could not downcast")
-//        }
-//        
-//        
-//        let accountsNavVC = UINavigationController(rootViewController: accountsVC)
-//        
-//        
-//        accountsNavVC.modalPresentationStyle = .overFullScreen
-//        navigationController?.present(accountsNavVC, animated: true)
-        
+        guard let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarController") as? UITabBarController else {
+            fatalError("could not downcast")
+        }
 
+
+        tabBarController.selectedIndex = 1
+        tabBarController.modalPresentationStyle = .overFullScreen
+        present(tabBarController, animated: false)
         
     }
     
