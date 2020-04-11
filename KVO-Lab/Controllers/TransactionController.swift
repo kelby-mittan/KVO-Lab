@@ -15,8 +15,8 @@ class TransactionController: UIViewController {
     
     @IBOutlet var transactionTextField: UITextField!
     
-    private let account: BankAccount?
-    
+    private let account: BankAccount
+        
     init?(coder: NSCoder, account: BankAccount) {
         self.account = account
         super.init(coder: coder)
@@ -33,17 +33,30 @@ class TransactionController: UIViewController {
     }
     
     private func updateUI() {
-        nameLabel.text = account?.username
-        balanceLabel.text = "$\(account?.balance.description ?? "")"
+        nameLabel.text = account.username
+        balanceLabel.text = "$\(account.balance.description)"
     }
     
     @IBAction func withdrawalButtonPressed(_ sender: UIButton) {
         
+        guard let balanceText = transactionTextField.text, !balanceText.isEmpty, let amount = Double(balanceText) else {
+            showAlert(title: "Please enter an amount", message: "")
+            return
+        }
+        
+        account.balance -= amount
+        balanceLabel.text = "$\(account.balance.description)"
     }
     
     
     @IBAction func depositButtonPressed(_ sender: UIButton) {
         
+        guard let balanceText = transactionTextField.text, !balanceText.isEmpty, let amount = Double(balanceText) else {
+            showAlert(title: "Please enter an amount", message: "")
+            return
+        }
+        account.balance += amount
+        balanceLabel.text = "$\(account.balance.description)"
     }
     
 }

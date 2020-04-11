@@ -18,6 +18,8 @@ class BankAccountsController: UIViewController {
         }
     }
     
+    private var accountBalanceObservation: NSKeyValueObservation?
+    
     private var bankAccountsObservation: NSKeyValueObservation?
     
     override func viewDidLoad() {
@@ -59,6 +61,13 @@ extension BankAccountsController: UITableViewDataSource {
         let account = bankAccounts[indexPath.row]
         cell.textLabel?.text = account.username
         cell.detailTextLabel?.text = "$ \(account.balance.description)"
+
+        accountBalanceObservation = account.observe(\.balance, options: [.new], changeHandler: { (account, change) in
+            guard let accountBalance = change.newValue else { return }
+            cell.detailTextLabel?.text = "$ \(accountBalance.description)"
+        })
+        
+        
         return cell
     }
     
@@ -68,8 +77,6 @@ extension BankAccountsController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let account = bankAccounts[indexPath.row]
-        
-//        let transactionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TransactionController") as! TransactionController
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let transactionVC = sb.instantiateViewController(identifier: "TransactionController", creator: { coder in
@@ -83,9 +90,3 @@ extension BankAccountsController: UITableViewDelegate {
 }
 
 
-//let createStoryboard = UIStoryboard(name: "CreateCollection", bundle: nil)
-//
-//let createCollectionVC = createStoryboard.instantiateViewController(identifier: "CreateCollectionController", creator: { coder in
-//
-//    return CreateCollectionController(coder: coder, venuePersistence: self.venuePersistence, collectionPersistence: self.collectionPersistence)
-//})
