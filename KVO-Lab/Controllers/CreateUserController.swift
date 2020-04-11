@@ -9,11 +9,19 @@
 import UIKit
 
 class CreateUserController: UIViewController {
-
+    
+    
+    @IBOutlet var usernameTextField: UITextField!
+    
+    @IBOutlet var balanceTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
-
+    @IBAction func createButtonPressed(_ sender: UIButton) {
+        
+        
+    }
+    
 }

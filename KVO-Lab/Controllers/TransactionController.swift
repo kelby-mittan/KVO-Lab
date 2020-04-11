@@ -10,10 +10,21 @@ import UIKit
 
 class TransactionController: UIViewController {
 
+    @IBOutlet var transactionTextField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
-
+    @IBAction func withdrawalButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    
+    @IBAction func depositButtonPressed(_ sender: UIButton) {
+        
+    }
+    
 }

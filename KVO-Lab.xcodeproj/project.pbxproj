@@ -18,6 +18,7 @@
 		027A50662442472A00C87C5F /* AllAccountsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A50652442472A00C87C5F /* AllAccountsController.swift */; };
 		027A50682442474900C87C5F /* TransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A50672442474900C87C5F /* TransactionController.swift */; };
 		027A506A2442477500C87C5F /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A50692442477500C87C5F /* BankAccount.swift */; };
+		027A506C24424B8600C87C5F /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027A506B24424B8600C87C5F /* ShowAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		027A50652442472A00C87C5F /* AllAccountsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllAccountsController.swift; sourceTree = "<group>"; };
 		027A50672442474900C87C5F /* TransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionController.swift; sourceTree = "<group>"; };
 		027A50692442477500C87C5F /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
+		027A506B24424B8600C87C5F /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				027A50602442451400C87C5F /* Controllers */,
-				027A505F2442450100C87C5F /* Models */,
+				027A505F2442450100C87C5F /* Models + Extensions */,
 				027A505E244244D500C87C5F /* Supporting Files */,
 				027A504A2442449300C87C5F /* Info.plist */,
 			);
@@ -116,12 +118,13 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		027A505F2442450100C87C5F /* Models */ = {
+		027A505F2442450100C87C5F /* Models + Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				027A50692442477500C87C5F /* BankAccount.swift */,
+				027A506B24424B8600C87C5F /* ShowAlert.swift */,
 			);
-			path = Models;
+			path = "Models + Extensions";
 			sourceTree = "<group>";
 		};
 		027A50602442451400C87C5F /* Controllers */ = {
@@ -239,6 +242,7 @@
 				027A503D2442448700C87C5F /* AppDelegate.swift in Sources */,
 				027A50662442472A00C87C5F /* AllAccountsController.swift in Sources */,
 				027A50682442474900C87C5F /* TransactionController.swift in Sources */,
+				027A506C24424B8600C87C5F /* ShowAlert.swift in Sources */,
 				027A503F2442448700C87C5F /* SceneDelegate.swift in Sources */,
 				027A5062244246DE00C87C5F /* CreateUserController.swift in Sources */,
 				027A506A2442477500C87C5F /* BankAccount.swift in Sources */,
