@@ -9,11 +9,12 @@
 import UIKit
 
 class BankAccountsController: UIViewController {
-
+    
     @IBOutlet var tableView: UITableView!
     
     private var bankAccounts = [BankAccount]() {
         didSet {
+            configureBankAccountsObservation()
             tableView.reloadData()
         }
     }
@@ -24,16 +25,20 @@ class BankAccountsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.dataSource = self
         tableView.delegate = self
         
         loadAccounts()
         
         configureBankAccountsObservation()
-        print(Accounts.shared.bankAccounts.first?.balance.description ?? 0)
     }
- 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        configureBankAccountsObservation()
+    }
+    
     private func loadAccounts() {
         bankAccounts = Accounts.shared.bankAccounts
     }
@@ -61,12 +66,12 @@ extension BankAccountsController: UITableViewDataSource {
         let account = bankAccounts[indexPath.row]
         cell.textLabel?.text = account.username
         cell.detailTextLabel?.text = "$ \(account.balance.description)"
-
-        accountBalanceObservation = account.observe(\.balance, options: [.new], changeHandler: { (account, change) in
+        
+        accountBalanceObservation = account.observe(\.balance, options: [.new], changeHandler: { [weak self] (account, change) in
+            self?.tableView.reloadData()
             guard let accountBalance = change.newValue else { return }
             cell.detailTextLabel?.text = "$ \(accountBalance.description)"
         })
-        
         
         return cell
     }
