@@ -14,7 +14,6 @@ class BankAccountsController: UIViewController {
     
     private var bankAccounts = [BankAccount]() {
         didSet {
-            configureBankAccountsObservation()
             tableView.reloadData()
         }
     }
@@ -34,10 +33,10 @@ class BankAccountsController: UIViewController {
         configureBankAccountsObservation()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        configureBankAccountsObservation()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        configureBankAccountsObservation()
+//    }
     
     private func loadAccounts() {
         bankAccounts = Accounts.shared.bankAccounts
@@ -62,13 +61,11 @@ extension BankAccountsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bankAccountCell", for: indexPath)
         
-        
         let account = bankAccounts[indexPath.row]
         cell.textLabel?.text = account.username
         cell.detailTextLabel?.text = "$ \(account.balance.description)"
         
-        accountBalanceObservation = account.observe(\.balance, options: [.new], changeHandler: { [weak self] (account, change) in
-            self?.tableView.reloadData()
+        accountBalanceObservation = account.observe(\.balance, options: [.new], changeHandler: { (account, change) in
             guard let accountBalance = change.newValue else { return }
             cell.detailTextLabel?.text = "$ \(accountBalance.description)"
         })

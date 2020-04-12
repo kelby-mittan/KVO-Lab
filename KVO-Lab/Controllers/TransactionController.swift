@@ -46,6 +46,7 @@ class TransactionController: UIViewController {
         
         account.balance -= amount
         balanceLabel.text = "$\(account.balance.description)"
+        navToTableView()
     }
     
     
@@ -57,6 +58,17 @@ class TransactionController: UIViewController {
         }
         account.balance += amount
         balanceLabel.text = "$\(account.balance.description)"
+        navToTableView()
     }
     
+    private func navToTableView() {
+        guard let tabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TabBarController") as? UITabBarController else {
+            fatalError("could not downcast")
+        }
+
+
+        tabBarController.selectedIndex = 1
+        tabBarController.modalPresentationStyle = .overFullScreen
+        present(tabBarController, animated: false)
+    }
 }
