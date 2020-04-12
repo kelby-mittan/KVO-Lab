@@ -33,11 +33,6 @@ class BankAccountsController: UIViewController {
         configureBankAccountsObservation()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(true)
-//        configureBankAccountsObservation()
-//    }
-    
     private func loadAccounts() {
         bankAccounts = Accounts.shared.bankAccounts
     }
